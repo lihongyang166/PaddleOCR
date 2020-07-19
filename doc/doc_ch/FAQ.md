@@ -13,7 +13,7 @@
 预计6月中下旬会先后发布基于Serving的服务部署方案和基于Paddle Lite的移动端部署方案，欢迎持续关注。
 
 5. **自研算法发布时间**  
-自研算法SAST、SRN、End2End-PSL都将在6-7月陆续发布，敬请期待。
+自研算法SAST、SRN、End2End-PSL都将在7-8月陆续发布，敬请期待。
 
 6. **如何在Windows或Mac系统上运行**  
 PaddleOCR已完成Windows和Mac系统适配，运行时注意两点：1、在[快速安装](./installation.md)时，如果不想安装docker，可跳过第一步，直接从第二步安装paddle开始。2、inference模型下载时，如果没有安装wget，可直接点击模型链接或将链接地址复制到浏览器进行下载，并解压放置到相应目录。
@@ -38,15 +38,14 @@ PaddleOCR已完成Windows和Mac系统适配，运行时注意两点：1、在[�
     中文数据集，LSVT街景数据集训练数据3w张图片
     - 识别：  
     英文数据集，MJSynth和SynthText合成数据，数据量上千万。  
-    中文数据集，LSVT街景数据集根据真值将图crop出来，并进行位置校准，总共30w张图像。此外基于LSVT的语料，合成数据500w。
-
+    中文数据集，LSVT街景数据集根据真值将图crop出来，并进行位置校准，总共30w张图像。此外基于LSVT的语料，合成数据500w。  
+    
     其中，公开数据集都是开源的，用户可自行搜索下载，也可参考[中文数据集](./datasets.md)，合成数据暂不开源，用户可使用开源合成工具自行合成，可参考的合成工具包括[text_renderer](https://github.com/Sanster/text_renderer)、[SynthText](https://github.com/ankush-me/SynthText)、[TextRecognitionDataGenerator](https://github.com/Belval/TextRecognitionDataGenerator)等。
 
-10. **使用带TPS的识别模型预测报错**
-
-报错信息：Input(X) dims[3] and Input(Grid) dims[2] should be equal, but received X dimension[3](320) != Grid dimension[2](100)
+10. **使用带TPS的识别模型预测报错**  
+报错信息：Input(X) dims[3] and Input(Grid) dims[2] should be equal, but received X dimension[3](320) != Grid dimension[2](100)  
 原因：TPS模块暂时无法支持变长的输入，请设置 --rec_image_shape='3,32,100' --rec_char_type='en' 固定输入shape
 
-11. **自定义字典训练的模型，识别结果出现字典里没出现的字**
-
+11. **自定义字典训练的模型，识别结果出现字典里没出现的字**  
 预测时没有设置采用的自定义字典路径。设置方法是在预测时，通过增加输入参数rec_char_dict_path来设置。
+

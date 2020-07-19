@@ -125,8 +125,8 @@ class DBProcessTest(object):
     def __init__(self, params):
         super(DBProcessTest, self).__init__()
         self.resize_type = 0
-        if 'det_image_shape' in params:
-            self.image_shape = params['det_image_shape']
+        if 'test_image_shape' in params:
+            self.image_shape = params['test_image_shape']
             # print(self.image_shape)
             self.resize_type = 1
         if 'max_side_len' in params:
@@ -194,8 +194,12 @@ class DBProcessTest(object):
         img_std = [0.229, 0.224, 0.225]
         im = im.astype(np.float32, copy=False)
         im = im / 255
-        im -= img_mean
-        im /= img_std
+        im[:, :, 0] -= img_mean[0]
+        im[:, :, 1] -= img_mean[1]
+        im[:, :, 2] -= img_mean[2]
+        im[:, :, 0] /= img_std[0]
+        im[:, :, 1] /= img_std[1]
+        im[:, :, 2] /= img_std[2]
         channel_swap = (2, 0, 1)
         im = im.transpose(channel_swap)
         return im
